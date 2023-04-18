@@ -8,7 +8,9 @@
 
 ## 시스템 아키텍처
 
-![flow](https://user-images.githubusercontent.com/33619494/107115480-584e6e80-68b0-11eb-81be-5fa6298abc1b.jpeg)
+![시스템 아키텍처](https://user-images.githubusercontent.com/33619494/107115480-584e6e80-68b0-11eb-81be-5fa6298abc1b.jpeg)
+
+Amazon EKS 기반 환경에서 쿠버네티스 클러스터를 구축했습니다.
 
 &nbsp;
 
@@ -87,17 +89,15 @@
 
 ### MySQL DB 실행
 
-- `k8s/db` 경로로 진입한다.
-- `kubectl apply -f sc.yaml` 명령으로 DB가 사용할 스토리지를 만드는 스토리지 클래스를 생성한다.
-  - AWS에서 진행하여서 EBS 타입의 볼륨을 퍼시스턴트 볼륨으로 사용하였다.
-- `kubectl apply -f statefulset.yaml`로 스테이트풀셋 생성하고 `kubectl apply -f svc.yaml`로 DB 엔드포인트 생성한다.
+- `kubectl apply -f k8s/db/sc.yaml` 명령으로 DB가 사용할 스토리지를 만드는 스토리지 클래스를 생성한다.
+  - Amazon EKS 환경에서 기본적으로 지원하는 EBS gp2 타입의 볼륨을 Persistent Volume으로 사용했습니다.
+- `kubectl apply -f k8s/db/statefulset.yaml`로 스테이트풀셋 생성하고 `kubectl apply -f k8s/db/svc.yaml`로 DB 엔드포인트 생성한다.
 
 &nbsp;
 
 ### nginx ingress controller 실행
 
-- `k8s`경로로 진입한다.
-- `kubectl apply -f nginx-ingress-controller/`명령으로 nginx ingress controller 실행한다.
+- `kubectl apply -f k8s/nginx-ingress-controller/` 명령으로 nginx ingress controller 실행한다.
 - AWS 리소스인 네트워크 로드 밸런서가 생성된다.
   - Route53에 로드 밸런서의 주소값을 등록한다.
   - 키: `k8s/app/ingress.yaml`파일의 `spec.rules.host`
@@ -107,6 +107,5 @@
 
 ### 어플리케이션 실행
 
-- `k8s` 경로로 진입한다.
 - `k8s/app/ingress.yaml`파일의 `spec.rules.host` 값을 변경하여야 한다.
-- `kubectl apply -f app/`명령으로 어플리케이션 pod, 서비스, 인그레스를 실행한다.
+- `kubectl apply -f k8s/app/` 명령으로 어플리케이션 pod, 서비스, 인그레스를 실행한다.
