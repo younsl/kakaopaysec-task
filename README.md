@@ -64,6 +64,8 @@ Amazon EKS 기반 환경에서 쿠버네티스 클러스터를 구축했습니�
 - 어플리케이션 가동 전, DB가 먼저 가동되어야 한다.
 - sql 파일에 table 생성이 작동하면서 테이블을 만들고 insert 한다.
 - 그 데이터는 스토리지에 저장된다.
+  - DB Pod가 사용할 Persistent Volume은 gp2 타입의 EBS Voulme을 사용한다.
+  - gp3 EBS Volume의 경우, 쿠버네티스 클러스터에 EBS CSI Driver의 별도 설치가 필요하기 때문에 기본 제공되는 gp2를 사용한다.
 
 &nbsp;
 
