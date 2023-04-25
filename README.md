@@ -66,6 +66,7 @@ Amazon EKS 기반 환경에서 쿠버네티스 클러스터를 구축했습니�
 - 그 데이터는 스토리지에 저장된다.
   - DB Pod가 사용할 Persistent Volume은 gp2 타입의 EBS Voulme을 사용한다.
   - gp3 EBS Volume의 경우, 쿠버네티스 클러스터에 EBS CSI Driver의 별도 설치가 필요하기 때문에 기본 제공되는 gp2를 사용한다.
+    - **관련문서** : [Amazon EBS CSI 마이그레이션 관련 자주 묻는 질문](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/ebs-csi-migration-faq.html#csi-migration-faq-default-storageclass)
 
 &nbsp;
 
@@ -111,3 +112,9 @@ Amazon EKS 기반 환경에서 쿠버네티스 클러스터를 구축했습니�
 
 - `k8s/app/ingress.yaml`파일의 `spec.rules.host` 값을 변경하여야 한다.
 - `kubectl apply -f k8s/app/` 명령으로 어플리케이션 pod, 서비스, 인그레스를 실행한다.
+
+&nbsp;
+
+## 참고자료
+
+[Spring PetClinic Sample Application](https://github.com/spring-projects/spring-petclinic)
