@@ -8,7 +8,7 @@
 
 ## 시스템 아키텍처
 
-![시스템 아키텍처](https://user-images.githubusercontent.com/33619494/107115480-584e6e80-68b0-11eb-81be-5fa6298abc1b.jpeg)
+![시스템 아키텍처](docs/1.png)
 
 Amazon EKS 기반 환경에서 쿠버네티스 클러스터를 구축했습니다.
 
